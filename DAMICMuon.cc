@@ -67,12 +67,12 @@ int main(int argc,char** argv) {
   G4Random::setTheEngine(new CLHEP::RanecuEngine);
   
   // Construct the default run manager
-#ifdef G4MULTITHREADED
-  G4MTRunManager* runManager = new G4MTRunManager;
+//#ifdef G4MULTITHREADED
+  //G4MTRunManager* runManager = new G4MTRunManager;
   //runManager->SetNumberOfThreads(2); 
-#else
+//#else
   G4RunManager* runManager = new G4RunManager;
-#endif
+//#endif
 
   // set mandatory initialization classes
   runManager->SetUserInitialization(new DAMICDetectorConstruction);
@@ -121,6 +121,7 @@ int main(int argc,char** argv) {
 
   //Close-out analysis:
   // Save histograms
+
   G4AnalysisManager* man = G4AnalysisManager::Instance();
   man->Write();
   man->CloseFile();

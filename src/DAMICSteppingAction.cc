@@ -166,7 +166,8 @@ void DAMICSteppingAction::UserSteppingAction(const G4Step* fStep)
   
 
 if(  NextVolume == "emptyLeadBoxPV" && StepProcess == "Transportation") {
-     
+//  if( NextVolume == "extLeadBoxPV") {  
+//    if(motherId==0) {  
     G4AnalysisManager* man = G4AnalysisManager::Instance();
     man->FillNtupleIColumn(0,0,event_id);
     man->FillNtupleDColumn(0,1,energy_pri/CLHEP::keV);
@@ -201,7 +202,9 @@ if(  NextVolume == "emptyLeadBoxPV" && StepProcess == "Transportation") {
     man->FillNtupleIColumn(0, 23, motherId); //16
     man->AddNtupleRow(0);
 
-    fStep->GetTrack()->SetTrackStatus(fStopAndKill);
+    //fStep->GetTrack()->SetTrackStatus(fStopAndKill);
+    fStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
+
 }
   // check what is to be drawn from EventAction/EventActionMessenger
   G4String drawColsFlag = evtAction->GetDrawColsFlag();

@@ -12,6 +12,9 @@
 /tracking/verbose 0
 #/hits/verbose 0
 #
+
+/random/setSeeds 30228 17649
+
 # draw flags
 #/damic/draw/drawColours custom
 #/damic/draw/gammaColour yellow
@@ -41,8 +44,11 @@
 /damic/gun/halfz  1 cm
 /damic/gun/centre 0 0 200 cm
 
+#
+/random/setSeeds 30228 17649
+
 # 
 #/damic/hitsfile muon_5.out
-/damic/histogramfile muon_cosmic_1
+/damic/histogramfile /home/shobhit/underground_sims/build/muon_cosmic_1
 #
-/run/beamOn 5
+/run/beamOn 2000

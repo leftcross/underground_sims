@@ -48,14 +48,7 @@
 
 
 #include "G4Run.hh"
-#include "G4RunManager.hh"
-
 #include "G4ios.hh"
-
-#include "G4LogicalVolumeStore.hh"
-#include "G4LogicalVolume.hh"
-#include "G4UnitsTable.hh"
-#include "G4SystemOfUnits.hh"
 
 #include <fstream>
 
@@ -89,6 +82,11 @@ void DAMICRunAction::BeginOfRunAction(const G4Run* aRun)
   else
     G4cout << "### Run " << aRun->GetRunID() << " starts (worker)." << G4endl;
   
+  G4AnalysisManager* man = G4AnalysisManager::Instance();
+  
+  // Open an output file
+  man->OpenFile(savehistFile);
+
   // Book histograms and ntuples
   Book();
 
@@ -98,19 +96,17 @@ void DAMICRunAction::BeginOfRunAction(const G4Run* aRun)
 
 void DAMICRunAction::EndOfRunAction(const G4Run*)
 {
-
   // Merge parameters
   //G4ParameterManager* parameterManager = G4ParameterManager::Instance();
   //parameterManager->Merge();
 
-  G4AnalysisManager* man = G4AnalysisManager::Instance();
-  
-  man->Write();
-  man->CloseFile();  
-
+  //G4AnalysisManager* man = G4AnalysisManager::Instance();
+  //man->Write();
+  //man->CloseFile();  
   G4cout << " done writing!  " ;
   G4cout << G4endl;
-    
+  
+  
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo....
@@ -123,7 +119,7 @@ void DAMICRunAction::Book()
   G4AnalysisManager* man = G4AnalysisManager::Instance();
   
   // Open an output file
-  man->OpenFile(savehistFile);
+  //man->OpenFile(savehistFile);
   man->SetFirstHistoId(1);
   man->SetFirstNtupleId(0);
 
