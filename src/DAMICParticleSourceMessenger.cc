@@ -112,8 +112,8 @@ DAMICParticleSourceMessenger::DAMICParticleSourceMessenger
   energyCmd->SetGuidance("Set kinetic energy.");
   energyCmd->SetParameterName("Energy",true,true);
   energyCmd->SetDefaultUnit("GeV");
-  //energyCmd->SetUnitCategory("Energy");
-  //energyCmd->SetUnitCandidates("eV keV MeV GeV TeV");
+  energyCmd->SetUnitCategory("Energy");
+  energyCmd->SetUnitCandidates("eV keV MeV GeV TeV");
 
     //lab depth energy
   depthCmd = new G4UIcmdWithADoubleAndUnit("/damic/gun/depth",this);
