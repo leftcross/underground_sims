@@ -78,15 +78,15 @@ G4ClassificationOfNewTrack DAMICStackingAction::ClassifyNewTrack
 (const G4Track* aTrack) {
 
 
-  static G4int gammasKilled = 0;
+  static G4int secondariesKilled = 0;
 
   G4ClassificationOfNewTrack classification = fWaiting;
 
-  // Kill gammas from neutrons in concrete wall
+  // Kill secondaries in the concrete wall since they will be probably stopped by the shielding
   if(killGammasFlag) {
-    // check if particle is gamma
+    // Make sure that we are not killing muons
     G4ParticleDefinition* particleType = aTrack->GetDefinition();
-    if(particleType==G4Gamma::GammaDefinition()) {
+    if(particleType!=G4MuonPlus::Definition() && particleType!=G4MuonMinus::Definition()) {
       // check if particle is in world_phys
       G4ThreeVector pos = aTrack->GetPosition();
       G4ThreeVector *ptr = NULL;
@@ -94,8 +94,8 @@ G4ClassificationOfNewTrack DAMICStackingAction::ClassifyNewTrack
       theVolume = gNavigator->LocateGlobalPointAndSetup(pos,ptr,false);
       if(theVolume->GetName() == "world_phys") {
 	classification = fKill;
-	G4cout << " Total for session Gammas killed in concrete wall (world_phys): "
-	       << ++gammasKilled << G4endl;
+	G4cout << " Total for session particles killed in concrete wall (world_phys): "
+	       << ++secondariesKilled << G4endl;
       }
     }
   }

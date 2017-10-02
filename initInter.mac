@@ -7,6 +7,7 @@
 
 /control/verbose 2
 /control/saveHistory
+/control/macroPath /home/shobhit/underground_sims/build/
 
 
 #Visual commands

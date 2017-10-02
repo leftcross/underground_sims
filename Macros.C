@@ -12,21 +12,24 @@
 #include <time.h>
 
 
-void Macros(TString fName="muon",Int_t num = 10,double numberRun=3000){
+void Macros(TString fName="muon",Int_t num = 20,double numberRun=3000){
 
   std::cout<<"Run started \n";
   double halfx=100,halfy=100,halfz=1;
-  double centrex=0,centrey=0,centrez=200;
+  double centrex=0,centrey=0,centrez=198;
   TString rootfile="muon_cosmic";
 
   double labdepth=6.01; // Depth of the lab below ground
   
   srand (time(NULL));
 
-      for (int k=0; k < num; k++){
+      for (int k=0+10; k < num+10; k++){
         
         std::cout<<"Iteration "<<k<<std::endl;
-        TString FileNameIn = fName+"_"+to_string(k+1)+".mac";
+	stringstream ss;
+	ss<<(k+1);
+	TString strn=ss.str();
+        TString FileNameIn = fName+"_"+strn+".mac";
         std::fstream macroFile(FileNameIn,std::fstream::out);
 
     
