@@ -9,6 +9,7 @@
 /control/saveHistory
 /control/macroPath /home/shobhit/underground_sims/build/
 
+/geometry/test/run
 
 #Visual commands
 /vis/open OGL

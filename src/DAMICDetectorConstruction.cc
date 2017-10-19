@@ -234,13 +234,13 @@ G4VPhysicalVolume* DAMICDetectorConstruction::Construct() {
 
   LabPV = new G4PVPlacement(0, G4ThreeVector(0.,0.,0), "LabPV", LabLV, WorldPV, false,0);
   G4PVPlacement* extPolyBoxPV = new G4PVPlacement(0, G4ThreeVector(0.,0., -(labHeight/2.0 - OutPolyBoxZ/2.)),
-						     "extPolyBoxPV", extPolyBoxLV, LabPV, false,0);
-  G4PVPlacement* emptyPolyBoxPV = new G4PVPlacement(0, G4ThreeVector(0.,0., -(labHeight/2.0 - OutPolyBoxZ/2.)),
-  						  "emptyPolyBoxPV", emptyPolyBoxLV, LabPV, false,0);
-  G4PVPlacement* extLeadBoxPV = new G4PVPlacement(0, G4ThreeVector(0.,0., -(labHeight/2.0 - OutLeadBoxZ/2.0 - boxThickness)),
-						  "extLeadBoxPV", extLeadBoxLV, LabPV, false,0);
-  G4PVPlacement* emptyLeadBoxPV = new G4PVPlacement(0, G4ThreeVector(0.,0.,  -(labHeight/2.0 - OutLeadBoxZ/2.0 - boxThickness)),
-						  "emptyLeadBoxPV", emptyLeadBoxLV, LabPV, false,0);
+						     "extPolyBoxPV", extPolyBoxLV, LabPV, false,true);
+  G4PVPlacement* emptyPolyBoxPV = new G4PVPlacement(0, G4ThreeVector(0.,0., 0.),
+  						  "emptyPolyBoxPV", emptyPolyBoxLV, extPolyBoxPV, false,true);
+  G4PVPlacement* extLeadBoxPV = new G4PVPlacement(0, G4ThreeVector(0.,0., -(OutPolyBoxZ/2. - OutLeadBoxZ/2.0 - boxThickness)),
+						  "extLeadBoxPV", extLeadBoxLV, emptyPolyBoxPV, false,true);
+  G4PVPlacement* emptyLeadBoxPV = new G4PVPlacement(0, G4ThreeVector(0.,0.,0.),
+						  "emptyLeadBoxPV", emptyLeadBoxLV, extLeadBoxPV, false,true);
   
  // -------------------------------------------MODULES---------------------------------------
 

@@ -135,9 +135,10 @@ void DAMICSteppingAction::UserSteppingAction(const G4Step* fStep)
   if (!fStep->GetTrack()->GetNextVolume()) return;  
   else NextVolume = fStep->GetTrack()->GetNextVolume()->GetName();
 
+  G4cout<<"Present volume is "<<Volume<<" Next volume is "<<NextVolume<<std::endl;
 
   if (fStep->GetPostStepPoint()!=0) 
-     Material = fStep->GetPostStepPoint()->GetMaterial()->GetName();
+       NextMaterial = fStep->GetPostStepPoint()->GetMaterial()->GetName();
   //    NextMaterial = fStep->GetTrack()->GetMaterial()->GetName(); 
 
   G4int trackID = fStep->GetTrack()->GetTrackID();
@@ -202,8 +203,8 @@ if(  NextVolume == "emptyLeadBoxPV" && StepProcess == "Transportation") {
     man->FillNtupleIColumn(0, 23, motherId); //16
     man->AddNtupleRow(0);
 
-    //fStep->GetTrack()->SetTrackStatus(fStopAndKill);
-    fStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
+    fStep->GetTrack()->SetTrackStatus(fStopAndKill);
+    //fStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
 
 }
   // check what is to be drawn from EventAction/EventActionMessenger
