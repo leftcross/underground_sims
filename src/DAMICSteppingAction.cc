@@ -166,7 +166,7 @@ void DAMICSteppingAction::UserSteppingAction(const G4Step* fStep)
   G4double partTrackLength = fStep->GetTrack()->GetTrackLength();
   
 
-if(  NextVolume == "emptyLeadBoxPV" && StepProcess == "Transportation") {
+if( Volume=="extLeadBoxLV" & NextVolume == "emptyLeadBoxPV" && StepProcess == "Transportation") {
 //  if( NextVolume == "extLeadBoxPV") {  
 //    if(motherId==0) {  
     G4AnalysisManager* man = G4AnalysisManager::Instance();
