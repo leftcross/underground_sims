@@ -135,7 +135,7 @@ void DAMICSteppingAction::UserSteppingAction(const G4Step* fStep)
   if (!fStep->GetTrack()->GetNextVolume()) return;  
   else NextVolume = fStep->GetTrack()->GetNextVolume()->GetName();
 
-  G4cout<<"Present volume is "<<Volume<<" Next volume is "<<NextVolume<<std::endl;
+  //G4cout<<"Present volume is "<<Volume<<" Next volume is "<<NextVolume<<std::endl;
 
   if (fStep->GetPostStepPoint()!=0) 
        NextMaterial = fStep->GetPostStepPoint()->GetMaterial()->GetName();
