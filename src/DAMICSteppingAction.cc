@@ -203,8 +203,8 @@ if(  NextVolume == "emptyLeadBoxPV" && StepProcess == "Transportation") {
     man->FillNtupleIColumn(0, 23, motherId); //16
     man->AddNtupleRow(0);
 
-    fStep->GetTrack()->SetTrackStatus(fStopAndKill);
-    //fStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
+    //fStep->GetTrack()->SetTrackStatus(fStopAndKill);
+    fStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
 
 }
   // check what is to be drawn from EventAction/EventActionMessenger
