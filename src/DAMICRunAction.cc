@@ -165,6 +165,8 @@ void DAMICRunAction::Book()
     man->CreateNtupleIColumn("stepNsecondaries");  //28 //from G4start
         //mother info - particle Change
     man->CreateNtupleIColumn("partMotherID"); //29  : 0,1 if there is a part change
+    man->CreateNtupleDColumn("partTheta");   // 30, particle theta 
+    man->CreateNtupleDColumn("partPhi");     // 31, particle phi
 
     man->FinishNtuple();
 

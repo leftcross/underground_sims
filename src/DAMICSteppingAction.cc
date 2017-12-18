@@ -148,6 +148,8 @@ void DAMICSteppingAction::UserSteppingAction(const G4Step* fStep)
   G4double partEtot = fStep->GetTrack()->GetTotalEnergy();
   G4double partEkin = fStep->GetTrack()->GetKineticEnergy();
 
+  G4double partTheta=fStep->GetTrack()->GetMomentumDirection().getTheta();
+  G4double partPhi=fStep->GetTrack()->GetMomentumDirection().getPhi();
 
   G4double partX=fStep->GetTrack()->GetPosition().x();
   G4double partY=fStep->GetTrack()->GetPosition().y();
@@ -166,7 +168,7 @@ void DAMICSteppingAction::UserSteppingAction(const G4Step* fStep)
   G4double partTrackLength = fStep->GetTrack()->GetTrackLength();
   
 
-if( Volume=="extLeadBoxLV" & NextVolume == "emptyLeadBoxPV" && StepProcess == "Transportation") {
+if( (Volume=="extLeadBoxLV") & (NextVolume == "emptyLeadBoxPV")) {
 //  if( NextVolume == "extLeadBoxPV") {  
 //    if(motherId==0) {  
     G4AnalysisManager* man = G4AnalysisManager::Instance();
@@ -201,10 +203,12 @@ if( Volume=="extLeadBoxLV" & NextVolume == "emptyLeadBoxPV" && StepProcess == "T
     man->FillNtupleSColumn(0, 21, NextMaterial);      //21
     man->FillNtupleIColumn(0, 22, stepNsec); 
     man->FillNtupleIColumn(0, 23, motherId); //16
+    man->FillNtupleDColumn(0, 24, partTheta);
+    man->FillNtupleDColumn(0, 25, partPhi);
     man->AddNtupleRow(0);
 
     //fStep->GetTrack()->SetTrackStatus(fStopAndKill);
-    fStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
+    //fStep->GetTrack()->SetTrackStatus(fKillTrackAndSecondaries);
 
 }
   // check what is to be drawn from EventAction/EventActionMessenger
